@@ -1,5 +1,7 @@
+# Deploy sample microservices into EKS
 
-Deploy sample microservices into EKS to test cluster.
+![Imgur](https://i.imgur.com/eyDfhcw.png)
+
 
 ## Quick Start
 
@@ -15,22 +17,22 @@ Deploy sample microservices into EKS to test cluster.
 - Let’s bring up the `NodeJS Backend API`:
 
     ```bash
-    kubectl apply -f nodejs/deployment.yaml
-    kubectl apply -f nodejs/service.yaml
+    kubectl apply -f https://git.io/nodejs-deployment
+    kubectl apply -f https://git.io/nodejs-service
     ```
 
 -   Bring up the `Crystal Backend API`:
 
     ```bash
-    kubectl apply -f crystal/deployment.yaml
-    kubectl apply -f crystal/service.yaml
+    kubectl apply -f https://git.io/crystal-deployment
+    kubectl apply -f https://git.io/crystal-service
     ```
 
 - Bring up the `Ruby Frontend`:
 
     ```bash
-    kubectl apply -f frontend/deployment.yaml
-    kubectl apply -f frontend/service.yaml
+    kubectl apply -f https://git.io/frontend-deployment
+    kubectl apply -f https://git.io/frontend-service
     ```
 
 - Find the `ELB` url and `curl` it:
@@ -39,6 +41,7 @@ Deploy sample microservices into EKS to test cluster.
     ELB=$(kubectl get service ecsdemo-frontend -o json | jq -r '.status.loadBalancer.ingress[].hostname')
     
     echo "http://$ELB"
+
     curl -m3 -v $ELB
     ```
 
@@ -61,12 +64,12 @@ Deploy sample microservices into EKS to test cluster.
 To delete the resources created by the applications, we should delete the application deployments:
 
 ```bash
-kubectl delete -f frontend/service.yaml
-kubectl delete -f frontend/deployment.yaml
+kubectl delete -f https://git.io/frontend-deployment
+kubectl delete -f https://git.io/frontend-service
 
-kubectl delete -f crystal/service.yaml
-kubectl delete -f crystal/deployment.yaml
+kubectl delete -f https://git.io/crystal-deployment
+kubectl delete -f https://git.io/crystal-service
 
-kubectl delete -f nodejs/service.yaml
-kubectl delete -f nodejs/deployment.yaml
+kubectl delete -f https://git.io/nodejs-deployment
+kubectl delete -f https://git.io/nodejs-service
 ```
