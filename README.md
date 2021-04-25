@@ -15,25 +15,22 @@ Deploy sample microservices into EKS to test cluster.
 - Let’s bring up the `NodeJS Backend API`:
 
     ```bash
-    cd nodejs
-    kubectl apply -f deployment.yaml
-    kubectl apply -f service.yaml
+    kubectl apply -f nodejs/deployment.yaml
+    kubectl apply -f nodejs/service.yaml
     ```
 
 -   Bring up the `Crystal Backend API`:
 
     ```bash
-    cd crystal
-    kubectl apply -f deployment.yaml
-    kubectl apply -f service.yaml
+    kubectl apply -f crystal/deployment.yaml
+    kubectl apply -f crystal/service.yaml
     ```
 
 - Bring up the `Ruby Frontend`:
 
     ```bash
-    cd frontend
-    kubectl apply -f deployment.yaml
-    kubectl apply -f service.yaml
+    kubectl apply -f frontend/deployment.yaml
+    kubectl apply -f frontend/service.yaml
     ```
 
 - Find the `ELB` url and `curl` it:
@@ -64,16 +61,12 @@ Deploy sample microservices into EKS to test cluster.
 To delete the resources created by the applications, we should delete the application deployments:
 
 ```bash
-cd frontend
-kubectl delete -f service.yaml
-kubectl delete -f deployment.yaml
+kubectl delete -f frontend/service.yaml
+kubectl delete -f frontend/deployment.yaml
 
-cd crystal
-kubectl delete -f service.yaml
-kubectl delete -f deployment.yaml
+kubectl delete -f crystal/service.yaml
+kubectl delete -f crystal/deployment.yaml
 
-cd nodejs
-kubectl delete -f service.yaml
-kubectl delete -f deployment.yaml
-
+kubectl delete -f nodejs/service.yaml
+kubectl delete -f nodejs/deployment.yaml
 ```
